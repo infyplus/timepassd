@@ -7,7 +7,7 @@ let durationOptions = computed(() => optionsStore.durationOptions)
 const emits = defineEmits(['changeDuration'])
 function changeDurationOption(value) {
     optionsStore.$patch({ durationOption: value })
-    emits('changeDuration')
+
 }
 </script>
 <template>
