@@ -23,15 +23,17 @@ const items = [
 </script>
 <template>
     <div class="p-5 border-b-4 border-b-blue-200 dark:border-b-blue-900 flex justify-between items-center">
-        <div class="flex justify-center items-center gap-2  ">
-            <div class="">
-                <img src="/logo.png" alt="Timepassd logo" class="w-6" />
+        <NuxtLink to="/">
+            <div class="flex justify-center items-center gap-2  ">
+                <div class="">
+                    <img src="/logo.png" alt="Timepassd logo" class="w-6" />
 
+                </div>
+                <div class="font-bold text-sky-600 text-lg">
+                    Timepassd
+                </div>
             </div>
-            <div class="font-bold text-sky-600 text-lg">
-                Timepassd
-            </div>
-        </div>
+        </NuxtLink>
         <div class="">
             <UDropdown :items="items" :ui="{ item: { disabled: 'cursor-text select-text' } }"
                 :popper="{ placement: 'bottom-start' }">

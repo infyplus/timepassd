@@ -1,7 +1,14 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: [
-   '@vite-pwa/nuxt','@nuxt/ui','@pinia/nuxt', '@samk-dev/nuxt-vcalendar', '@formkit/auto-animate/nuxt','dayjs-nuxt'
+    '@vite-pwa/nuxt',
+    '@nuxt/ui',
+    '@pinia/nuxt',
+    '@samk-dev/nuxt-vcalendar',
+    '@formkit/auto-animate/nuxt',
+    'dayjs-nuxt',
+    "@nuxt/image",
+    "nuxt-tiptap-editor"
   ],
   pwa: {
     registerType: 'autoUpdate',

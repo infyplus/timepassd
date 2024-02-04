@@ -1,6 +1,20 @@
 <script setup lang="ts">
 const route = useRoute()
 const router = useRouter()
+const tabItems = [
+    {
+        slot: 'day',
+        label: 'Daily',
+    },
+    {
+        slot: 'week',
+        label: 'Weekly',
+    },
+    {
+        slot: 'year',
+        label: 'Yearly',
+    }
+]
 const dataStore = useDateStore()
 let timeCard = computed(() => dataStore.getTimecard)
 let showEditModal = ref(false)
@@ -52,13 +66,75 @@ async function deleteTimeCard() {
                 {{ new Date(timeCard.date).toLocaleString() }}
             </div>
             <template #footer>
-                <UCard>
-                    <template #header>
-                        <div class="text-lg font-bold">
-                            Upcoming Highlights
+                <div class="flex gap-3 flex-col">
+                    <UCard>
+                        <template #header>
+                            <div class="text-lg font-bold">
+                                Today
+                            </div>
+                        </template>
+
+                        <div class="flex gap-3 flex-col">
+                            <UCard v-for="today in timeCard.today">
+
+                                <div class="flex justify-between">
+                                    <div class="font-bold text-xl  text-blue-400">
+                                        {{ today.label }}
+                                    </div>
+                                    <div class="">
+                                        <UButton icon="i-heroicons-share" color="blue" />
+                                    </div>
+                                </div>
+
+
+
+                            </UCard>
                         </div>
-                    </template>
-                </UCard>
+
+                    </UCard>
+                    <UCard>
+                        <template #header>
+                            <div class="text-lg font-bold">
+                                Upcoming Highlights
+                            </div>
+                        </template>
+                        <UTabs :items="tabItems">
+                            <template #day="{ item }">
+                                <div class="flex gap-3 flex-col" v-if="timeCard.upcomingDates.comingDays">
+                                    <UCard v-for="day in timeCard.upcomingDates.comingDays">
+                                        <template #header>
+                                            <div class="font-bold">
+                                                {{ day.label }}
+                                            </div>
+                                        </template>
+                                    </UCard>
+                                </div>
+                            </template>
+                            <template #week="{ item }">
+                                <div class="flex gap-3 flex-col" v-if="timeCard.upcomingDates.comingWeeks">
+                                    <UCard v-for="day in timeCard.upcomingDates.comingWeeks">
+                                        <template #header>
+                                            <div class="font-bold">
+                                                {{ day.label }}
+                                            </div>
+                                        </template>
+                                    </UCard>
+                                </div>
+                            </template>
+                            <template #year="{ item }">
+                                <div class="flex gap-3 flex-col" v-if="timeCard.upcomingDates.comingYears">
+                                    <UCard v-for="day in timeCard.upcomingDates.comingYears">
+                                        <template #header>
+                                            <div class="font-bold">
+                                                {{ day.label }}
+                                            </div>
+                                        </template>
+                                    </UCard>
+                                </div>
+                            </template>
+                        </UTabs>
+                    </UCard>
+                </div>
             </template>
         </UCard>
     </div>
